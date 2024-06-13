@@ -41,8 +41,6 @@
 // -109 <= nums1[i], nums2[j] <= 109
  
 
-// Follow up: Can you come up with an algorithm that runs in O(m + n) time?
-
 /**
  * @param {number[]} nums1 //array 1
  * @param {number} m //no of element in the array
@@ -51,16 +49,38 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(nums1, m, nums2, n) {
-    //Merge two arrays nums1 and nums2 
-        //append num2 to nums 1
-        for (let i = 0; i < nums2.length; i++) {
-            nums1.push(nums2[i])
-        }
-
-        //sort the array
-        for (let i = 0; i < nums1.length; i++) {
-            if ( nums1[i] > nums1[i+1]) {
-                let newArray = 
+    // New array to hold merged elements
+        let newArray = [];
+        
+        const arrayLength = m+n
+        // Indices for traversing nums1 and nums2
+        let i = 0, j = 0;
+    
+        // Loop until all elements from both arrays are merged
+        while (i < m && j < n) {
+            if (nums1[i] < nums2[j]) {
+                newArray.push(nums1[i++]);
+            } else {
+                newArray.push(nums2[j++]);
             }
         }
-};
+    
+        // Add remaining elements from nums1 if any
+        while (i < m) {
+            newArray.push(nums1[i++]);
+        }
+    
+        // Add remaining elements from nums2 if any
+        while (j < n) {
+            newArray.push(nums2[j++]);
+        }
+    
+        console.log("Merged array: ", newArray);
+        nums1.length = 0
+        nums1.push(...newArray);
+         //copy newarray into nums one and return nums1
+        return nums1;
+        
+    };
+    
+    
