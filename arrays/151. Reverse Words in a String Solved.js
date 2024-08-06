@@ -24,3 +24,18 @@ var reverseWords = function (s) {
     }
     return res
 };
+
+const test = ( ) => {
+    var array = [80,2,4,5,67,8,9,0,2,3,4,6,4,5, 'eejrjekr', 'Mbale', 'Deport']
+
+    let l = 0
+    let i = 0
+
+    while(l < array.length) {
+         
+        console.log(l)
+        array[l++] = array[i++]
+    }
+}
+
+test()
